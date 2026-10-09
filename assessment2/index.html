@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="/*The background style is taken from https://css-pattern.com/ and modified*/
+  --s: 400px; /* control the size*/
+  --c1: #525ab0;
+  --c2: #ffffff;
+  
+  --_g: #0000 90deg,var(--c1) 0;
+  background: 
+    conic-gradient(from 90deg at 2px 2px,var(--_g)),
+    conic-gradient(from 90deg at 1px 1px,var(--_g)),
+    var(--c2);
+  background-size: var(--s) var(--s), calc(var(--s)/5) calc(var(--s)/5);">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +20,7 @@
 </head>
 
 <body>
-    <nav style="font-family:Arial, Helvetica, sans-serif; padding:20px;">
+    <nav style="width:100%; display: flex; justify-content: center;align-items: center;">
         <a href="index.html" style="text-decoration: none; color:black; font-size: 125%; font-weight:bold;">Web 1.0</a>
         | <a href="web2.html" style="text-decoration: none; color:black;">Web 2.0</a> | <a href="web3.html"
             style="text-decoration: none; color:black;">Web 3.0</a> | <a href="web4.html"
@@ -25,7 +35,7 @@
         <img src="apple-lisa.jpg" style="width:700px;">
     </header>
 
-    <main style="width:700px; margin:auto;">
+    <main style="width:700px; margin:auto; background-color:#fdfafab7; border:2px solid #333;">
         <p>
             Web 1.0 is often described as the “read-only” Web. It was characterized by static web pages with very
             limited user interaction. Most websites served as online brochures or repositories of information, where
