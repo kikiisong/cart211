@@ -68,6 +68,12 @@ header h2{
     color: rgb(88, 129, 232);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
+    letter-spacing: 0;
+    transition: letter-spacing 0.3s;
+}
+
+header h2:hover {
+    letter-spacing: 0.1em;
 }
 
 header h3{
@@ -138,6 +144,12 @@ article h3 {
     display: block;
     width: 100%;
     height: auto;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.books img:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(147, 179, 248, 0.5);
 }
 
 /*.books img {
@@ -151,9 +163,19 @@ article h3 {
     margin: 0;
 }
 
-article figure figcaption {
+/*article figure figcaption {
     margin-top: 5px;
     font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}*/
+
+.books figcaption {
+    font-variant: small-caps;
+    letter-spacing: 0.12em;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 8px;
 }
 
 footer {
