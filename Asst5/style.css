@@ -58,12 +58,12 @@ body {
 }
 
 /* Apply a blur and zoom effect to images with class "im". */
-.im:hover {
+/*.im:hover {
     filter: blur(2px);
     opacity: 0.9;
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
-}
+}*/
 
 /* DESKTOP MENU */
 .menu1 {
@@ -620,4 +620,84 @@ footer a {
         grid-template-columns: auto auto;
         gap: 16px;
     }
+}
+
+@media (min-width: 1025px) {
+    .pict {
+        --card: 240px;  /* size of each card */
+        --lift: 90px;   /* how far a card pops up */
+
+        display: flex;  /* replaces the grid */
+        max-width: 1100px; 
+        margin: 0 auto 80px;
+        padding-top: calc(var(--lift) + 20px); /* room to pop up */
+    }
+
+    /* Each figure only takes a thin slice of the row.
+       The image is wider than the slice, so the cards overlap. */
+    .pict figure {
+        flex: 1 1 0;
+        min-width: 0;
+        height: var(--card);
+        margin: 0; /* removes the browser's default figure margin */
+        z-index: 1;
+    }
+
+    /* The last card has nothing covering it, so it gets its full width */
+    .pict figure:last-child {
+        flex: 0 0 var(--card);
+    }
+
+    .pict figure:hover {
+        z-index: 10; /* bring the hovered card to the front */
+    }
+
+    /* Prevents link flickering*/
+    .pict a {
+        display: block;
+        position: relative;
+        height: 100%;
+    }
+
+    /* Extend the hover area upward so you can follow the raised card */
+    .pict figure:hover a::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        width: 100%;
+        height: var(--lift);
+    }
+
+    .pict img {
+        width: var(--card);
+        height: var(--card);
+        max-width: none;
+        box-shadow: -6px 0 14px rgba(0, 0, 0, 0.3);
+        /* lets the mouse reach the slices underneath a raised card */
+        pointer-events: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pict figure:hover img {
+        transform: translateY(calc(-1 * var(--lift)));
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+        opacity: 1;
+    }
+
+    /* Title rises with the card */
+    .pict .hover-text {
+        display: block;
+        bottom: 12px;
+        left: 12px;
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .pict figure:hover .hover-text {
+        opacity: 1;
+        transform: translateY(calc(-1 * var(--lift)));
+    }
+
 }
