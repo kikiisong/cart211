@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humans of New York | CART 211 Assessment</title>
 
-     <meta name="description"
+    <meta name="description"
         content="A Humans of New York Story - A Course exercise (cart211_ exploring semantic HTML, CSS Grid, and Mobile queries)"
         .>
 
@@ -39,8 +39,7 @@
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Delicious+Handrawn&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla:wght@400;700&display=swap"
         rel="stylesheet">
 
     <!-- social media and hamburger menu icons library-->
@@ -84,16 +83,20 @@
         <section>
             <!-- ARTICLE: contains a related piece of written and visual content -->
             <article>
-                <h1>Humans of New York</h1>
+                <h1 style="text-align: center;">Humans of New York</h1>
                 <p class="intro">
-                    Humans of New York began as Brandon Stanton photography project in 2010. The initial goal was to
-                    photograph 10,000 New Yorkers on the street, and create an exhaustive catalogue of the city’s
+                    <span class="box" style="color:#eebe43;">Humans of New York</span> began as Brandon Stanton
+                    photography project in 2010. The initial goal was to
+                    photograph 10,000 <u style="color:#7628f3;">New Yorkers</u> on the street, and create an exhaustive
+                    catalogue of the city’s
                     inhabitants.
                 </p>
                 <p class="intro">
-                    Taken together, these portraits and captions became the subject of a vibrant blog. HONY now has over
-                    twenty million followers on social media, and provides a worldwide audience with daily glimpses into
-                    the lives of strangers on the streets of New York City.
+                    Taken together, these portraits and captions became the subject of a vibrant blog. <span class="box"
+                        style="color:#eebe43;">HONY</span> now has over
+                    <u style="text-decoration-style: wavy;color:#060d57;">twenty million followers</u> on social media,
+                    and provides a worldwide audience with daily glimpses into
+                    the lives of strangers on the streets of <u style="color:#7628f3;">New York City</u>.
                 </p>
                 <!-- IMAGE GALLERY:
                 The pict class creates the CSS grid layout.
@@ -221,33 +224,39 @@
         <footer>
             <section class="social-section">
                 <div class="social-icons">
-                    <a href="https://facebook.com" class="social facebook" aria-label="Facebook">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
+                    <button type="button" class="social-toggle" aria-label="Show social media links">
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </button>
 
-                    <a href="https://instagram.com" class="social instagram" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social facebook" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
 
-                    <a href="https://x.com" class="social twitter" aria-label="X">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
+                        <a href="https://instagram.com" class="social instagram" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
 
-                    <a href="https://tiktok.com" class="social tiktok" aria-label="Tiktok">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </a>
+                        <a href="https://x.com" class="social twitter" aria-label="X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
 
-                    <a href="https://youtube.com" class="social youtube" aria-label="Youtube">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
+                        <a href="https://tiktok.com" class="social tiktok" aria-label="Tiktok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
 
-                    <a href="https://linkedin.com" class="social linkedin" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
+                        <a href="https://youtube.com" class="social youtube" aria-label="Youtube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
 
-                    <a href="https://github.com" class="social github" aria-label="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
+                        <a href="https://linkedin.com" class="social linkedin" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+
+                        <a href="https://github.com" class="social github" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </section>
 
