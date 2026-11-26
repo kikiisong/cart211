@@ -1,5 +1,5 @@
 body {
-     font-family: 'Karla', sans-serif;
+    font-family: 'Karla', sans-serif;
     font-weight: 400;
     /* Use the default size as the reference size */
     font-size: 1em;
@@ -424,7 +424,7 @@ footer a {
 
 /* HIGHLIGHT BOXES */
 .box {
-    border: 2px solid;  
+    border: 2px solid;
     padding: 0 6px;
     border-radius: 4px;
 
@@ -634,17 +634,64 @@ footer a {
         grid-template-columns: auto auto;
         gap: 16px;
     }
+
+    @media (max-width: 1024px) {
+    .story-page h1 {
+        font-size: 3em;
+        line-height: 1;
+        margin: 0 0 10px;
+        text-align: center;
+    }
+
+    .story-page h2 {
+        font-size: 1.5em;
+        margin: 0 0 20px;
+        text-align: center;
+    }
+    .story-page figure {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 25px;
+    }
+
+    .story-page figure img {
+        display: block;
+        width: 100%;
+        height: auto; 
+    }
+
+    .story-page article p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .social-toggle {
+        display: none;
+    }
+
+    .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
 }
 
 @media (min-width: 1025px) {
     .pict {
-        --card: 240px;  /* size of each card */
-        --lift: 90px;   /* how far a card pops up */
+        --card: 240px;
+        /* size of each card */
+        --lift: 90px;
+        /* how far a card pops up */
 
-        display: flex;  /* replaces the grid */
-        max-width: 1100px; 
+        display: flex;
+        /* replaces the grid */
+        max-width: 1100px;
         margin: 0 auto 80px;
-        padding-top: calc(var(--lift) + 20px); /* room to pop up */
+        padding-top: calc(var(--lift) + 20px);
+        /* room to pop up */
     }
 
     /* Each figure only takes a thin slice of the row.
@@ -653,7 +700,8 @@ footer a {
         flex: 1 1 0;
         min-width: 0;
         height: var(--card);
-        margin: 0; /* removes the browser's default figure margin */
+        margin: 0;
+        /* removes the browser's default figure margin */
         z-index: 1;
     }
 
@@ -663,7 +711,8 @@ footer a {
     }
 
     .pict figure:hover {
-        z-index: 10; /* bring the hovered card to the front */
+        z-index: 10;
+        /* bring the hovered card to the front */
     }
 
     /* Prevents link flickering*/
@@ -715,97 +764,227 @@ footer a {
     }
 
     /* FLOATING PARAGRAPHS */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
     }
-    50% {
-        transform: translateY(-10px);
-    }
-}
 
-.intro {
-    animation: float 5s ease-in-out infinite;
-}
-
-/* Delay the second paragraph so they don't move in sync */
-.intro + .intro {
-    animation-delay: -2.5s;
-}
-
-/* Pause while hovering */
-.intro:hover {
-    animation-play-state: paused;
-}
-
-/* Turn off for people who've asked their device to reduce motion */
-@media (prefers-reduced-motion: reduce) {
     .intro {
-        animation: none;
+        animation: float 5s ease-in-out infinite;
     }
-}
 
-/* EXPANDING SOCIAL ICONS */
-.social-icons {
-    position: relative;
-    width: fit-content;   /* so only the eye triggers the hover */
-    margin: 0 auto;
-}
+    /* Delay the second paragraph so they don't move in sync */
+    .intro+.intro {
+        animation-delay: -2.5s;
+    }
 
-.social-toggle {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border: 2px solid black;
-    border-radius: 50%;
-    background: white;
-    color: black;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+    /* Pause while hovering */
+    .intro:hover {
+        animation-play-state: paused;
+    }
 
-.social-links {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 10px;
-    visibility: hidden;
-    transition: visibility 0s 0.3s; /* wait for the fade-out before hiding */
-}
+    /* Turn off for people who've asked their device to reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+        .intro {
+            animation: none;
+        }
 
-.social-links .social {
-    flex-shrink: 0;
-    opacity: 0;
-    transform: translateX(-20px) scale(0.3);
-    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .story-page {
+            animation: none;
+        }
+    }
 
-/* on mouse hover or keyboard focus */
-.social-icons:hover .social-links,
-.social-icons:focus-within .social-links {
-    visibility: visible;
-    transition-delay: 0s;
-}
+    /* EXPANDING SOCIAL ICONS */
+    .social-icons {
+        position: relative;
+        width: fit-content;
+        /* so only the eye triggers the hover */
+        margin: 0 auto;
+    }
 
-.social-icons:hover .social,
-.social-icons:focus-within .social {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-}
+    .social-toggle {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 2px solid black;
+        border-radius: 50%;
+        background: white;
+        color: black;
+        font-size: 18px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
 
-.social-icons:hover .social-toggle,
-.social-icons:focus-within .social-toggle {
-    transform: rotate(180deg);
-}
+    .social-links {
+        position: absolute;
+        left: 100%;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-left: 10px;
+        visibility: hidden;
+        transition: visibility 0s 0.3s;
+        /* wait for the fade-out before hiding */
+    }
 
-/* Lift icon when hovered */
-.social-icons .social-links .social:hover {
-    transform: translateY(-6px) scale(1.08);
-}
+    .social-links .social {
+        flex-shrink: 0;
+        opacity: 0;
+        transform: translateX(-20px) scale(0.3);
+        transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
+    /* on mouse hover or keyboard focus */
+    .social-icons:hover .social-links,
+    .social-icons:focus-within .social-links {
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    .social-icons:hover .social,
+    .social-icons:focus-within .social {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+
+    .social-icons:hover .social-toggle,
+    .social-icons:focus-within .social-toggle {
+        transform: rotate(180deg);
+    }
+
+    /* Lift icon when hovered */
+    .social-icons .social-links .social:hover {
+        transform: translateY(-6px) scale(1.08);
+    }
+
+    /*STORY PAGE STYLING*/
+    .story-page {
+        --pale: #f8f8f8;
+        --blue: #2f4bff;
+        --ink: #1b1340;
+
+        color: var(--ink);
+        background: var(--pale);
+        min-height: 100vh;
+    }
+
+    /* NAV */
+    .story-page nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        padding: 10px 30px;
+        background: white;
+        border: 3px solid var(--ink);
+        border-radius: 50px;
+        box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .story-page .menu1 {
+        gap: 10px;
+        background: transparent;
+    }
+
+    .story-page nav .menuI {
+        font-family: 'Bebas Neue', sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        padding: 2px 18px;
+        border-radius: 30px;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .story-page nav .menuI:hover {
+        color: var(--pale);
+        background: var(--ink);
+        transform: rotate(-4deg);
+    }
+
+    .story-page article {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        column-gap: 50px;
+        align-items: start;
+    }
+
+    .story-page h1,
+    .story-page h2 {
+        grid-column: 1 / -1;
+    }
+
+    .story-page h1 {
+        font-size: 7em;
+        line-height: 1;
+        margin: 50px 0 15px;
+        color: white;
+        text-shadow: 4px 4px 0 var(--blue), 8px 8px 0 var(--ink);
+    }
+
+    .story-page h2 {
+        justify-self: start;
+        margin: 0 0 40px;
+        padding: 6px 20px;
+        font-family: 'Bebas Neue', sans-serif;
+        font-weight: 400;
+        font-size: 2.5em;
+        border: 3px solid var(--ink);
+        box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    /* PHOTO: tilted print that straightens on hover */
+    .story-page figure {
+        margin: 0;
+        padding: 14px 14px 40px;
+        background: white;
+        box-shadow: 12px 12px 0 var(--ink);
+    }
+
+    .story-page figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* STORY CARD */
+    .story-page article p {
+        margin: 0 0 80px;
+        padding: 35px 40px;
+        font-size: 1.3em;
+        line-height: 1.7;
+        text-align: left;
+        background: var(--pale);
+        border: 3px solid var(--ink);
+        border-radius: 20px;
+        box-shadow: 10px 10px 0 var(--ink);
+    }
+
+    /* Big first letter */
+    .story-page article p::first-letter {
+        float: left;
+        margin: 6px 12px 0 0;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4.5em;
+        line-height: 0.85;
+    }
+
+
+    /* FOOTER */
+    .story-page footer {
+        padding-bottom: 20px;
+    }
+
+    .story-page .credits {
+        color: white;
+        font-size: 12px;
+        text-shadow: 1px 1px 3px var(--ink);
+    }
 }
