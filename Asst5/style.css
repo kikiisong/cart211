@@ -433,7 +433,7 @@ footer a {
     box-decoration-break: clone;
 }
 
-/* responsive disign */
+/* responsive design */
 @media (max-width: 1024px) {
     .hamburger-menu {
         display: flex;
@@ -605,6 +605,7 @@ footer a {
         max-width: calc(100% - 20%);
         box-sizing: border-box;
         white-space: normal;
+        display: block;
     }
 
     @media (max-width: 600px) {
@@ -635,18 +636,20 @@ footer a {
         gap: 16px;
     }
 
-    @media (max-width: 1024px) {
     .story-page h1 {
         font-size: 3em;
         line-height: 1;
         margin: 0 0 10px;
         text-align: center;
+        background: #e7b745;
+        color: #f5f4f0;
     }
 
     .story-page h2 {
         font-size: 1.5em;
         margin: 0 0 20px;
         text-align: center;
+        letter-spacing: 1em;
     }
     .story-page figure {
         width: 100%;
@@ -676,7 +679,6 @@ footer a {
         justify-content: center;
         gap: 10px;
     }
-
 }
 
 @media (min-width: 1025px) {
@@ -940,7 +942,6 @@ footer a {
         box-shadow: 5px 5px 0 var(--ink);
     }
 
-    /* PHOTO: tilted print that straightens on hover */
     .story-page figure {
         margin: 0;
         padding: 14px 14px 40px;
