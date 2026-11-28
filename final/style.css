@@ -229,3 +229,44 @@ body.on-title #top { color:#fff; }
 
 .duo-images img { display:block; min-width:0;
   max-width:calc(50% - 40px); max-height:100%; }
+
+/* Second scene: memory circles */
+.scene.bubble-scene { display:block; padding:0; background:#000; color:#fff; }
+
+.bubble-text { position:absolute; top:30%; left:0; width:100%; height:30%;
+  display:flex; align-items:center; justify-content:center; }
+.bubble-text p { padding:0 16px; }
+
+.bubbles { position:absolute; top:60%; bottom:70px; left:0; width:100%;
+  display:flex; align-items:center; justify-content:center;
+  gap:clamp(10px, 4vw, 48px); }
+
+.bubble { box-sizing:border-box; flex:none;
+  width:min(28vw, 28vh, 180px); aspect-ratio:1; border-radius:50%;
+  border:3px solid #ff69b4; background:transparent; color:#fff;
+  padding:clamp(8px, 1.5vw, 18px); font-family:inherit;
+  font-size:clamp(11px, 1.8vmin, 16px); line-height:1.35;
+  text-align:center; cursor:pointer; }
+.bubble:hover { background:rgba(255, 105, 180, .12); }
+.bubble:focus-visible { outline:3px solid #fff; }
+
+/* Chat scene: message images that stack on top of each other */
+.scene.chat-scene { display:block; padding:0; background:#000; color:#fff; cursor:pointer; }
+
+.chat-text { position:absolute; top:25%; left:0; width:100%; height:25%;
+  display:flex; align-items:center; justify-content:center; }
+.chat-text p { padding:0 16px; }
+
+.chat-stack { --w:min(46vw, 70vh, 420px); --step:calc(var(--w) * 0.3);
+  position:absolute; top:50%; left:50%;
+  width:var(--w); height:calc(var(--w) * 0.6);
+  padding:0; border:0; background:transparent; cursor:pointer; }
+
+.chat-msg { position:absolute; left:0; top:calc(var(--i) * var(--step));
+  width:100%; height:auto; visibility:hidden; opacity:0;
+  transform:translateY(12px) scale(.96);
+  transition:opacity .3s, transform .3s; }
+
+.chat-msg.shown { visibility:inherit; opacity:1; transform:none; }
+
+.chat-stack:focus-visible { outline:3px solid #fff; }

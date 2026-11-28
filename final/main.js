@@ -13,7 +13,24 @@ const story = {
     { type:'duo', text:'Girl 1 and girl 2 met. Girl 2 was new to the city.',
   leftImage:'assets/p1-a-left.png', leftAlt:'girl 1',
   rightImage:'assets/p1-a-right.png', rightAlt:'girl 2' },
-    { type:'scene', image:art('#f5c9a8','#7a6a4f','#fff1c1','A · Scene 2'), text:'By afternoon I reached the hills. Nothing seemed out of place.' },
+    { type:'bubbles',
+  text:'Girl 1 introduced girl 2 to everything she liked.',
+  bubbles:[
+    { prompt:'click to reveal the memory', memory:'Her favorite cafe is Rabbit House' },
+    { prompt:'', memory:'Her favorite movie is Scream' },
+    { prompt:'', memory:'Her favorite artist is toe' }
+  ] },
+  { type:'duo', fadeLeft:true,
+  text:'Girl 1 says she needs to focus on school, so they stop hanging out so often.',
+  leftImage:'assets/p1-a-left.png', leftAlt:'girl 1',
+  rightImage:'assets/p1-a-right.png', rightAlt:'girl 2' },
+  { type:'chat',
+  text:'Girl 2 love bombs girl 1 with info and hangout plans that are catered to her taste.',
+  messages:[
+    { image:'assets/p4-a-bubble1.png', alt:'cafe' },
+    { image:'assets/p4-a-bubble2.png', alt:'movie' },
+    { image:'assets/p4-a-bubble3.png', alt:'concert' }
+  ] },
     { type:'end',   image:art('#e7a6a1','#5b4a63','#ffe9b0','A · Last scene'), text:'That is how I remember it. Is there another side to this?' }
   ],
   B: [
@@ -47,9 +64,25 @@ function render() {
       return `<section class="scene duo-scene">
         <div class="duo-text"><p class="item">${s.text}</p></div>
         <div class="duo-images">
-          <img src="${s.leftImage}" alt="${s.leftAlt}">
+           <img class="${s.fadeLeft ? 'fade-away' : ''}" src="${s.leftImage}" alt="${s.leftAlt}">
           <img src="${s.rightImage}" alt="${s.rightAlt}">
         </div>
+      </section>`;
+    }
+    else if (s.type === 'bubbles') {
+      return `<section class="scene bubble-scene">
+        <div class="bubble-text"><p class="item">${s.text}</p></div>
+        <div class="bubbles item">
+          ${s.bubbles.map((b, i) => `<button type="button" class="bubble" data-memory="${b.memory}" aria-live="polite" aria-label="${b.prompt || 'Reveal memory ' + (i + 1)}">${b.prompt}</button>`).join('')}
+        </div>
+      </section>`;
+    }
+    if (s.type === 'chat') {
+      return `<section class="scene chat-scene">
+        <div class="chat-text"><p class="item">${s.text}</p></div>
+        <button type="button" class="chat-stack">
+          ${s.messages.map((m, i) => `<img class="chat-msg ${i === 0 ? 'shown' : ''}" style="--i:${i}" src="${m.image}" alt="${m.alt}">`).join('')}
+        </button>
       </section>`;
     }
     return `<section class="scene">
@@ -86,10 +119,16 @@ function goTo(target) {
   const dir = target > index ? 1 : -1;
   const from = scenes[index], to = scenes[target];
   index = target;
+  const fading = to.querySelector('.fade-away');
+  if (fading) {                       // show it again on every visit
+    gsap.killTweensOf(fading);
+    gsap.set(fading, { opacity:1 });
+  }
   updateUI();
   const tl = gsap.timeline({ onComplete: () => {
     gsap.set(from, { autoAlpha:0 });
     busy = false; updateUI();
+     if (fading) gsap.to(fading, { opacity:0, delay:0.5, duration:3, ease:'power1.inOut' });
   }});
   gsap.set(to, { autoAlpha: reduced ? 0 : 1, yPercent: reduced ? 0 : 100 * dir, zIndex:2 });
   gsap.set(from, { zIndex:1 });
@@ -158,4 +197,19 @@ window.addEventListener('keydown', e => {
   if (e.key === ' ' && e.target.closest('button')) return;  // let Space press the button
   if (['ArrowDown','PageDown',' '].includes(e.key)) { e.preventDefault(); next(); }
   if (['ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+});
+
+stage.addEventListener('click', e => {
+  const bubble = e.target.closest('.bubble');
+  if (!bubble) return;
+  bubble.textContent = bubble.dataset.memory;
+  bubble.setAttribute('aria-label', bubble.dataset.memory);
+});
+
+// Click anywhere on the chat page to show the next message
+stage.addEventListener('click', e => {
+  const chat = e.target.closest('.chat-scene');
+  if (!chat) return;
+  const hidden = chat.querySelector('.chat-msg:not(.shown)');
+  if (hidden) hidden.classList.add('shown');
 });
